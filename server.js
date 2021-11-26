@@ -25,6 +25,21 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+// whoami
+app.get("/api/whoami", (req, res) => {
+  const myIPAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+  const language = req.headers["accept-language"];
+  const software = req.header('User-Agent');
+
+
+  res.send({
+    ipaddress: myIPAddress,
+    language: language,
+    software: software
+  })
+});
+
+
 
 
 // listen for requests :)
